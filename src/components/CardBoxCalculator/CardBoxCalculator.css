@@ -1,0 +1,146 @@
+.card-box-calculator {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calculator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.calculator-header h2 {
+  color: blue;
+  font-weight: bold;
+  margin: 0;
+  font-size: 24px;
+}
+
+.refresh-button {
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: opacity 0.2s;
+}
+
+.refresh-button:hover {
+  opacity: 0.8;
+}
+
+.input-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input-field input {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: blue;
+  box-shadow: 0 0 4px rgba(0, 0, 255, 0.1);
+}
+
+.input-field input[readonly] {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.bold-label {
+  color: blue;
+  font-weight: bold;
+}
+
+.layer-section,
+.rate-section,
+.conversion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.layer-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.layer-label {
+  color: blue;
+  font-weight: bold;
+  min-width: 100px;
+  font-size: 14px;
+}
+
+.section-title {
+  color: blue;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.results-section {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #ddd;
+}
+
+.result-value {
+  color: #4a141c;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .calculator-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .input-group,
+  .layer-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-field input {
+    width: 100%;
+  }
+
+  .results-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
