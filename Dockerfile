@@ -14,7 +14,7 @@ FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy Vite build output
 COPY --from=build /app/dist /usr/share/nginx/html
