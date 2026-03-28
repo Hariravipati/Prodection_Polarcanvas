@@ -9,6 +9,7 @@ interface BoxDimensionsProps {
   deckleLength: number;
   totalCost: number;
   price: number;
+  boxWeight: number;
   onLengthChange: (value: number) => void;
   onBreadthChange: (value: number) => void;
   onHeightChange: (value: number) => void;
@@ -24,6 +25,7 @@ const BoxDimensions: React.FC<BoxDimensionsProps> = ({
   deckleLength,
   totalCost,
   price,
+  boxWeight,
   onLengthChange,
   onBreadthChange,
   onHeightChange,
@@ -57,7 +59,10 @@ const BoxDimensions: React.FC<BoxDimensionsProps> = ({
               <p className="text-xs text-gray-600">Total Cost</p>
               <p className="text-lg font-bold text-red-700">{totalCost.toFixed(2)}</p>
             </div>
-            <div />
+            <div className="bg-white p-2 rounded border border-gray-200">
+              <p className="text-xs text-gray-600">Box Weight</p>
+              <p className="text-lg font-bold text-blue-700">{boxWeight.toFixed(3)} kg</p>
+            </div>
             <div className="bg-white p-2 rounded border border-gray-200">
               <p className="text-xs text-gray-600">Price</p>
               <p className="text-lg font-bold text-green-700">{price.toFixed(2)}</p>

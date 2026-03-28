@@ -45,6 +45,7 @@ const CardBoxCalculator: React.FC = () => {
   const [totalCost, setTotalCost] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [valueBox, setValueBox] = useState<number>(0);
+  const [boxWeight, setBoxWeight] = useState<number>(0);
 
   // Update deckle size and length when dimensions change
   useEffect(() => {
@@ -63,13 +64,15 @@ const CardBoxCalculator: React.FC = () => {
     const wprCL = calculateWeightPerReem(deckleSize, deckleLength, cLinerGsm);
     const wprAF = calculateWeightPerReem(deckleSize, deckleLength, aFluteGsm, FLUTE_MULTIPLIERS.a);
     const wprAL = calculateWeightPerReem(deckleSize, deckleLength, aLinerGsm);
-
+     console.log(`wprTop: ${wprTop} kg, wprBF: ${wprBF} kg, wprBL: ${wprBL} kg, wprCF: ${wprCF} kg, wprCL: ${wprCL} kg, wprAF: ${wprAF} kg, wprAL: ${wprAL} kg`);
     // Calculate total board and box weight
     const totalBoard = ceilToThreeDecimals(wprTop + wprBF + wprBL + wprCF + wprCL + wprAF + wprAL);
+    console.log(`Total Board Weight: ${totalBoard} kg`);
     const boxWeight = ceilToThreeDecimals(totalBoard / 1);
+    setBoxWeight(boxWeight);
     const valuePerBox = ceilToThreeDecimals(boxWeight * ratePerKg);
     setValueBox(valuePerBox);
-
+     console.log(`boxWeight: ${boxWeight} kg, valuePerBox: ₹${valuePerBox}`);
     // Calculate cost per box
     const costPerBox = calculateCostPerBox(
       wprTop, wprBF, wprBL, wprCF, wprCL, wprAF, wprAL,
@@ -79,10 +82,10 @@ const CardBoxCalculator: React.FC = () => {
     // Calculate final price
     const { totalCost: newTotalCost, price: newPrice } = calculateFinalPrice(
       costPerBox,
-      valuePerBox,
       printingCharges,
       transportCharges,
-      margin
+      margin,
+      valuePerBox
     );
 
     setTotalCost(newTotalCost);
@@ -170,6 +173,7 @@ const CardBoxCalculator: React.FC = () => {
             deckleLength={deckleLength}
             totalCost={totalCost}
             price={price}
+            boxWeight={boxWeight}
             onLengthChange={setLength}
             onBreadthChange={setBreadth}
             onHeightChange={setHeight}

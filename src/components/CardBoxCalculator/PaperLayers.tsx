@@ -2,8 +2,8 @@ import React from 'react';
 import LabelInput from './LabelInput';
 
 interface PaperLayer {
-  gsm: number;
-  bf: number;
+  gsm: number | '';
+  bf: number | '';
 }
 
 interface PaperLayersProps {
@@ -16,27 +16,19 @@ interface PaperLayersProps {
     aFlute: PaperLayer;
     aLiner: PaperLayer;
   };
-  onLayerChange: (layer: string, field: 'gsm' | 'bf', value: number) => void;
+  onLayerChange: (layer: string, field: 'gsm' | 'bf', value: string) => void;
 }
 
 const LayerInput: React.FC<{
   label: string;
-  gsm: number;
-  bf: number;
-  onGsmChange: (value: number) => void;
-  onBfChange: (value: number) => void;
+  gsm: number | '';
+  bf: number | '';
+  onGsmChange: (value: string) => void;
+  onBfChange: (value: string) => void;
 }> = ({ label, gsm, bf, onGsmChange, onBfChange }) => (
   <div className="grid grid-cols-2 gap-2">
-    <LabelInput 
-      label={`${label} GSM`} 
-      value={gsm} 
-      onChange={(e) => onGsmChange(Number((e.target as HTMLInputElement).value))} 
-    />
-    <LabelInput 
-      label={`${label} BF`} 
-      value={bf} 
-      onChange={(e) => onBfChange(Number((e.target as HTMLInputElement).value))} 
-    />
+    <LabelInput label={`${label} GSM`} value={gsm} onChange={(e) => onGsmChange(e.target.value)} />
+    <LabelInput label={`${label} BF`} value={bf} onChange={(e) => onBfChange(e.target.value)} />
   </div>
 );
 

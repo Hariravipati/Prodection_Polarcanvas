@@ -20,13 +20,13 @@ export const DEFAULT_VALUES = {
     aLiner: { gsm: 0, bf: 0 },
   },
   prices: {
-    topPr: 30,
-    bFlutePr: 30,
-    bLinerPr: 30,
-    cFlutePr: 30,
-    cLinerPr: 30,
-    aFlutePr: 30,
-    aLinerPr: 30,
+    topPr: 33,
+    bFlutePr: 33,
+    bLinerPr: 33,
+    cFlutePr: 33,
+    cLinerPr: 33,
+    aFlutePr: 33,
+    aLinerPr: 33,
   },
   conversion: {
     ratePerKg: 10,
@@ -51,6 +51,7 @@ export const calculateWeightPerReem = (
   return ceilToThreeDecimals(
     ((deckleSize / 100) * (deckleLength / 100) * (gsm / 1000) * multiplier) * FLUTE_MULTIPLIERS.wastage
   );
+  
 };
 
 export const calculateCostPerBox = (
@@ -72,15 +73,14 @@ export const calculateCostPerBox = (
 
 export const calculateFinalPrice = (
   costPerBox: number,
-  valueBox: number,
   printingCharges: number,
   transportCharges: number,
-  margin: number
+  margin: number,
+  valueBox: number
 ): { totalCost: number; price: number } => {
-  const totalCalc = ceilToThreeDecimals(
-    (costPerBox + valueBox + printingCharges + transportCharges) * (margin / 100)
-  );
-  const totalCost = costPerBox + valueBox + printingCharges + totalCalc;
-  const price = ceilToThreeDecimals(totalCost);
-  return { totalCost, price };
+ 
+  const base = ceilToThreeDecimals(costPerBox + printingCharges + transportCharges+valueBox);
+  const marginAmount = ceilToThreeDecimals(base * (margin / 100));
+  const totalCost = ceilToThreeDecimals(base + marginAmount);
+  return { totalCost, price: totalCost };
 };
