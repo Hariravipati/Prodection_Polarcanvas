@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Navigate } from 'react-router-dom'
 import { all_routes } from './all_routes'
-import { Login, CardBoxCalculator, CreateArticle, CreatePurchase } from './lazyRoutes'
+import { Login, CardBoxCalculator, CreateArticle, CreatePurchase, Master } from './lazyRoutes'
 
 const routes = all_routes
 
@@ -28,6 +28,12 @@ export const publicRoutes = [
     path: routes.purchase,
     name: 'Purchase Order',
     element: <CreatePurchase />,
+    route: Route,
+  },
+  {
+    path: routes.master,
+    name: 'Master',
+    element: <Master />,
     route: Route,
   }
 ]

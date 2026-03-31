@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { setCollapsed } from '../../../hooks/redux/sidebarSlice'
 import { setDataTheme } from '../../../hooks/redux/themeSettingSlice'
 import { Bell, HelpCircle, Grid2x2, Search } from 'lucide-react'
+import logo from "../../../assets/images/logo.png";
+import icon from "../../../assets/images/icon.png";
 
 type HeaderProps = {
   variant?: 'index' | 'app'
@@ -16,7 +18,7 @@ const Header = ({ variant = 'app', noSidebar = false }: HeaderProps) => {
 
   const toggleSidebar = () => dispatch(setCollapsed(!collapsed))
   const toggleTheme   = () => dispatch(setDataTheme(theme === 'dark' ? 'light' : 'dark'))
-  const IMG_BASE = import.meta.env.VITE_IMAGE_BASE_URL;
+ 
 
   const handleMenuClick = () => {
     toggleSidebar();
@@ -29,7 +31,7 @@ const Header = ({ variant = 'app', noSidebar = false }: HeaderProps) => {
       <div className="left">
         {variant === 'index' ? (
           <div className="brand">
-            <a href="/index"><img src={`${IMG_BASE}logo.png`} alt="brand" className="brand-logo" /></a>
+            <a href="/index"><img src={`${logo}`} alt="brand" className="brand-logo" /></a>
           </div>
         ) : (
           <button className="icon-btn" aria-label="Toggle menu" onClick={handleMenuClick}>
@@ -65,7 +67,7 @@ const Header = ({ variant = 'app', noSidebar = false }: HeaderProps) => {
           <Grid2x2 />
         </button>
         <div className="profile-mini" title="Admin">
-          <img src={`${IMG_BASE}icon.png`} alt="avatar" />
+          <img src={`${icon}`} alt="avatar" />
         </div>
       </div>
     </header>

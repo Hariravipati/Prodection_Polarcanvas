@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { all_routes } from "../../router/all_routes";
 import { loginAdmin } from "../../services/authService";
+import logo from "../../assets/images/logo.png";
+import icon from "../../assets/images/icon.png";
+import login from "../../assets/images/login.png";
 
+  
 const Login = () => {
   const navigate = useNavigate();
 
@@ -50,7 +54,7 @@ const Login = () => {
       }
     })();
   };
-  const IMG_BASE = import.meta.env.VITE_IMAGE_BASE_URL;
+
 
   return (
     
@@ -60,7 +64,7 @@ const Login = () => {
         <div className="left-card">
           <div className="left-image-wrap">
             <img
-              src={`${IMG_BASE}icon.png`}
+              src={`${icon}`}
               alt="PolarCanvas"
               className="w-12 h-12 mb-3"
             />
@@ -68,7 +72,7 @@ const Login = () => {
 
           <div className="left-image-wrap">
             <img
-              src={`${IMG_BASE}login.png`}
+              src={`${login}`}
               alt="PolarCanvas packaging"
               className="left-image"
             />
@@ -81,7 +85,7 @@ const Login = () => {
         <div className="form-wrap">
           <div className="brand-top flex justify-center mb-2">
             <img
-             src={`${IMG_BASE}logo.png`}
+             src={`${logo}`}
               alt="PolarCanvas"
               className="w-50 h-18"
             />

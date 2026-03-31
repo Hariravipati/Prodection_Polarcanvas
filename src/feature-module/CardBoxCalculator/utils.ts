@@ -60,27 +60,40 @@ export const calculateCostPerBox = (
   topPr: number, bFlutePr: number, bLinerPr: number,
   cFlutePr: number, cLinerPr: number, aFlutePr: number, aLinerPr: number
 ): number => {
-  return (
-    ceilToThreeDecimals(topPr * wprTop) +
-    ceilToThreeDecimals(bFlutePr * wprBF) +
-    ceilToThreeDecimals(bLinerPr * wprBL) +
-    ceilToThreeDecimals(cFlutePr * wprCF) +
-    ceilToThreeDecimals(cLinerPr * wprCL) +
-    ceilToThreeDecimals(aFlutePr * wprAF) +
-    ceilToThreeDecimals(aLinerPr * wprAL)
-  );
+  const topCost   = ceilToThreeDecimals(topPr     * wprTop);
+  const bfCost    = ceilToThreeDecimals(bFlutePr  * wprBF);
+  const blCost    = ceilToThreeDecimals(bLinerPr  * wprBL);
+  const cfCost    = ceilToThreeDecimals(cFlutePr  * wprCF);
+  const clCost    = ceilToThreeDecimals(cLinerPr  * wprCL);
+  const afCost    = ceilToThreeDecimals(aFlutePr  * wprAF);
+  const alCost    = ceilToThreeDecimals(aLinerPr  * wprAL);
+  const total     = topCost + bfCost + blCost + cfCost + clCost + afCost + alCost;
+  console.log('[calculateCostPerBox]', {
+    topCost, bfCost, blCost, cfCost, clCost, afCost, alCost,
+    rawTotal: topPr*wprTop + bFlutePr*wprBF + bLinerPr*wprBL + cFlutePr*wprCF + cLinerPr*wprCL + aFlutePr*wprAF + aLinerPr*wprAL,
+    ceiledTotal: total,
+  });
+  return total;
 };
 
 export const calculateFinalPrice = (
   costPerBox: number,
+  valueBox: number,
   printingCharges: number,
   transportCharges: number,
-  margin: number,
-  valueBox: number
+  margin: number
 ): { totalCost: number; price: number } => {
- 
-  const base = ceilToThreeDecimals(costPerBox + printingCharges + transportCharges+valueBox);
-  const marginAmount = ceilToThreeDecimals(base * (margin / 100));
-  const totalCost = ceilToThreeDecimals(base + marginAmount);
+  const rawBase    = costPerBox + valueBox + printingCharges + transportCharges;
+  const base       = ceilToThreeDecimals(rawBase);
+  const rawMargin  = base * (margin / 100);
+  const marginAmount = ceilToThreeDecimals(rawMargin);
+  const rawTotal   = base + marginAmount;
+  const totalCost  = ceilToThreeDecimals(rawTotal);
+  console.log('[calculateFinalPrice]', {
+    costPerBox, valueBox, printingCharges, transportCharges, margin,
+    rawBase, base,
+    rawMargin, marginAmount,
+    rawTotal, totalCost,
+  });
   return { totalCost, price: totalCost };
 };

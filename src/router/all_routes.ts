@@ -6,4 +6,5 @@ export const all_routes = {
   cardbox: '/cardbox',
   article: '/article',
   purchase: '/purchase',
+  master: '/master',
 }
