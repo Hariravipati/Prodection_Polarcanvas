@@ -14,7 +14,7 @@ const createLazyComponent = (
 }
 
 export const Login = createLazyComponent(() => import('../feature-module/auth/login'))
-export const CardBoxCalculator = createLazyComponent(() => import('../feature-module/cardBoxCalculator/CardBoxCalculator'))
+export const CardBoxCalculator = createLazyComponent(() => import('../feature-module/CardBoxCalculator/CardBoxCalculator'))
 export const CreateArticle = createLazyComponent(() => import('../feature-module/createArticle/CreateArticle'))
 export const CreatePurchase = createLazyComponent(() => import('../feature-module/createPurchaseOrder/CreatePurchaseOrder'))
 export const Master = createLazyComponent(() => import('../feature-module/master/Master'))
