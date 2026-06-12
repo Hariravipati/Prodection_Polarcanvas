@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { all_routes } from "../../router/all_routes";
-import { loginAdmin } from "../../services/authService";
+import { loginAdmin, saveAuthToken } from "../../services/authService";
 import logo from "../../assets/images/logo.png";
 import icon from "../../assets/images/icon.png";
 import login from "../../assets/images/login.png";
@@ -45,8 +45,8 @@ const Login = () => {
           return;
         }
 
-        localStorage.setItem("authToken", token);
-        navigate(all_routes.cardbox);
+        saveAuthToken(token);
+        navigate(all_routes.cardbox, { replace: true });
       } catch (e) {
         setError(e?.message || "Login failed");
       } finally {

@@ -7,12 +7,11 @@ import icon from "../../../assets/images/icon.png";
 import logo from "../../../assets/images/logo.png";
 
 import {
-  Home,
   Calculator,
   FileText,
   ShoppingCart,
-  Package,
-  Settings
+  Settings,
+  LogOut
 } from 'lucide-react'
 
 const Sidebar = () => {
@@ -45,8 +44,9 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <NavIcon to={all_routes.cardbox} Icon={Calculator} label="Calculator" />
         <NavIcon to={all_routes.article} Icon={FileText} label="Article" />
-        <NavIcon to={all_routes.purchase} Icon={ShoppingCart} label="Purchase" />       
+        <NavIcon to={all_routes.purchase} Icon={ShoppingCart} label="Purchase" />
         <NavIcon to={all_routes.master} Icon={Settings} label="Master" />
+        <NavIcon to={all_routes.logout} Icon={LogOut} label="Logout" />
       </nav>
     </aside>
   )

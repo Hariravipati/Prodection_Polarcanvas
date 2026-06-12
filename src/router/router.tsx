@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { publicRoutes, authRoutes } from './router.link'
+import ProtectedRoute from './ProtectedRoute'
+import { publicRoutes, protectedRoutes } from './router.link'
 
 const Feature = lazy(() => import('../feature-module/auth/feature'))
 const AuthFeature = lazy(() => import('../feature-module/auth/authFeature'))
@@ -11,7 +12,7 @@ const ALLRoutes = () => {
       <Route
         element={
           <Suspense fallback={<div className="loader-wrap"><div className="loader"></div></div>}>
-            <Feature />
+            <AuthFeature />
           </Suspense>
         }
       >
@@ -22,12 +23,14 @@ const ALLRoutes = () => {
 
       <Route
         element={
-          <Suspense fallback={<div className="loader-wrap"><div className="loader"></div></div>}>
-            <AuthFeature />
-          </Suspense>
+          <ProtectedRoute>
+            <Suspense fallback={<div className="loader-wrap"><div className="loader"></div></div>}>
+              <Feature />
+            </Suspense>
+          </ProtectedRoute>
         }
       >
-        {authRoutes.map((route, idx) => (
+        {protectedRoutes.map((route, idx) => (
           <Route path={route.path} element={route.element} key={idx} />
         ))}
       </Route>

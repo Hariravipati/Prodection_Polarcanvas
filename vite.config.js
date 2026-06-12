@@ -11,13 +11,19 @@ export default defineConfig({
     },
   },
   server: {
+    port: 3000,
+    host: true,
     proxy: {
       '/auth-api': {
-        target: 'http://auth.qa.thehrpay.com',
+        target: 'http://40.192.63.90:3002',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/auth-api/, ''),
       },
     },
+  },
+  preview: {
+    port: 3000,
+    host: true,
   },
 })
